@@ -54,13 +54,20 @@ function App() {
           </button>
         </div>
       </form>
-      {recipes.map((recipe, index) => (
-        <Recipe
-          key={index + Math.random()}
-          image={recipe.image}
-          label={recipe.label}
-        />
-      ))}
+      <div className="container">
+        <div className="col">
+          <div className="row">
+            {recipes.map((recipe, index) => (
+              <Recipe
+                key={index + Math.random()}
+                image={recipe.image}
+                label={recipe.label}
+                url={recipe.url}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
