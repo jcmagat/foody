@@ -1,8 +1,8 @@
 import React from "react";
 
-const Recipe = (props) => {
+const RecipeCard = (props) => {
   return (
-    <div className="card m-md-5">
+    <div className="card">
       <img className="card-img-top" src={props.image} alt={props.label} />
       <div className="card-body">
         <h4 className="card-title">{props.label}</h4>
@@ -20,4 +20,4 @@ const Recipe = (props) => {
   );
 };
 
-export default Recipe;
+export default RecipeCard;

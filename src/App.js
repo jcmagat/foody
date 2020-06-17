@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Recipe from "./components/Recipe";
+import RecipeContainer from "./components/RecipesContainer";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -44,20 +44,7 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="container">
-        <div className="col">
-          <div className="row">
-            {recipes.map((recipe, index) => (
-              <Recipe
-                key={index + Math.random()}
-                image={recipe.image}
-                label={recipe.label}
-                url={recipe.url}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      <RecipeContainer key={Math.random()} recipes={recipes} />
     </div>
   );
 }
