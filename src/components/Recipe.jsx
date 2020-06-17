@@ -1,13 +1,10 @@
 import React from "react";
 
-const Recipe = ({ id, image, title }) => {
-  const imageType = image.split(".")[1];
-  const imageSrc = `https://spoonacular.com/recipeImages/${id}-636x393.${imageType}`;
-
+const Recipe = (props) => {
   return (
     <div>
-      <img className="img-fluid" src={imageSrc} alt="Responsive image" />
-      <h3>{title}</h3>
+      <img className="img-fluid" src={props.image} alt="Responsive image" />
+      <h3>{props.label}</h3>
     </div>
   );
 };

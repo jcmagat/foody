@@ -8,18 +8,20 @@ function App() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    const API_KEY = process.env.REACT_APP_API_KEY;
+    const APP_ID = process.env.REACT_APP_APP_ID;
+    const APP_KEY = process.env.REACT_APP_APP_KEY;
 
     const getRecipes = async () => {
       let results = [];
 
       if (query !== "") {
         const response = await fetch(
-          `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${query}&number=5`
+          `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
         );
         const data = await response.json();
-        results = data.results;
-        console.log(data);
+        results = data.hits.map((hit) => hit.recipe);
+
+        console.log(results);
       }
 
       setRecipes(results);
@@ -52,12 +54,11 @@ function App() {
           </button>
         </div>
       </form>
-      {recipes.map((recipe) => (
+      {recipes.map((recipe, index) => (
         <Recipe
-          key={recipe.id}
-          id={recipe.id}
+          key={index + Math.random()}
           image={recipe.image}
-          title={recipe.title}
+          label={recipe.label}
         />
       ))}
     </div>
