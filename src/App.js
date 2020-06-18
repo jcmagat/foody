@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import RecipeContainer from "./components/RecipeContainer";
+import SearchForm from "./components/SearchForm";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -36,14 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <form className="input-group" onSubmit={updateSearch}>
-        <input className="form-control" type="text" name="search" />
-        <div className="input-group-append">
-          <button className="btn btn-primary" type="submit">
-            Search
-          </button>
-        </div>
-      </form>
+      <SearchForm updateSearch={updateSearch} />
       <RecipeContainer recipes={recipes} />
     </div>
   );
