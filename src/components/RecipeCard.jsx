@@ -1,22 +1,23 @@
 import React from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const RecipeCard = (props) => {
   return (
-    <div className="card">
-      <img className="card-img-top" src={props.image} alt={props.title} />
-      <div className="card-body">
-        <h4 className="card-title">{props.title}</h4>
-        <p className="card-text">{`by ${props.sourceName}`}</p>
-        <a
-          className="btn btn-primary"
+    <Card>
+      <Card.Img variant="top" src={props.image} alt={props.title} />
+      <Card.Body>
+        <Card.Title>{props.title}</Card.Title>
+        <Card.Text>{`by ${props.sourceName}`}</Card.Text>
+        <Button
           href={props.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
           Recipe
-        </a>
-      </div>
-    </div>
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
