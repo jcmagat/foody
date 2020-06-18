@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import RecipeContainer from "./components/RecipesContainer";
+import RecipeContainer from "./components/RecipeContainer";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -39,12 +39,12 @@ function App() {
       <form className="input-group" onSubmit={updateSearch}>
         <input className="form-control" type="text" name="search" />
         <div className="input-group-append">
-          <button className="btn btn-success" type="submit">
+          <button className="btn btn-primary" type="submit">
             Search
           </button>
         </div>
       </form>
-      <RecipeContainer key={Math.random()} recipes={recipes} />
+      <RecipeContainer recipes={recipes} />
     </div>
   );
 }
