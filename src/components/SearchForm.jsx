@@ -1,53 +1,39 @@
 import React, { useState } from "react";
+import InputGroup from "react-bootstrap/InputGroup";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 
 const SearchForm = (props) => {
-  const [dropdownShow, setDropdownShow] = useState("");
   const [dropdownTitle, setDropdownTitle] = useState("Recipe Name");
 
-  const toggleDropdown = () => {
-    const temp = dropdownShow === "" ? " show" : "";
-    setDropdownShow(temp);
-  };
-
-  const dropdownRecipeName = () => {
-    toggleDropdown();
-    setDropdownTitle("Recipe Name");
-  };
-
   const updateDropdownTitle = (e) => {
-    toggleDropdown();
     setDropdownTitle(e.target.text);
   };
 
   return (
-    <form className="input-group" onSubmit={props.updateSearch}>
-      <div className="input-group-prepend">
-        <button
-          className="btn btn-primary dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          onClick={toggleDropdown}
-        >
-          {dropdownTitle}
-        </button>
-        <div className={`dropdown-menu${dropdownShow}`}>
-          <a className="dropdown-item" href="#" onClick={updateDropdownTitle}>
-            Recipe Name
-          </a>
-          <a className="dropdown-item" href="#" onClick={updateDropdownTitle}>
-            Ingredients
-          </a>
-        </div>
-      </div>
-      <input className="form-control" type="text" name="search" />
-      <div className="input-group-append">
-        <button className="btn btn-primary" type="submit">
-          Search
-        </button>
-      </div>
-    </form>
+    <Form onSubmit={props.updateSearch}>
+      <InputGroup>
+        <InputGroup.Prepend>
+          <DropdownButton id="dropdown-basic-button" title={dropdownTitle}>
+            <Dropdown.Item href="#" onClick={updateDropdownTitle}>
+              Recipe Name
+            </Dropdown.Item>
+            <Dropdown.Item href="#" onClick={updateDropdownTitle}>
+              Ingredients
+            </Dropdown.Item>
+          </DropdownButton>
+        </InputGroup.Prepend>
+
+        <FormControl type="text" name="search" />
+
+        <InputGroup.Append>
+          <Button type="submit">Search</Button>
+        </InputGroup.Append>
+      </InputGroup>
+    </Form>
   );
 };
 

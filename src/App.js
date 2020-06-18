@@ -13,7 +13,7 @@ function App() {
     const getRecipes = async () => {
       // Get recipe IDs by name
       const getRecipeIdsResponse = await fetch(
-        `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${search}&number=10`
+        `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${search}&number=12`
       );
       const data = await getRecipeIdsResponse.json();
       const ids = data.results.map((result) => result.id);

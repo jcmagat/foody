@@ -6,7 +6,7 @@ const RecipeCard = (props) => {
       <img className="card-img-top" src={props.image} alt={props.title} />
       <div className="card-body">
         <h4 className="card-title">{props.title}</h4>
-        <p className="card-text">Info</p>
+        <p className="card-text">{`by ${props.sourceName}`}</p>
         <a
           className="btn btn-primary"
           href={props.sourceUrl}
