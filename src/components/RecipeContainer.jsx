@@ -5,13 +5,13 @@ const RecipeContainer = (props) => {
   return (
     <div className="container">
       <div className="row">
-        {props.recipes.map((recipe, index) => (
+        {props.recipes.map((recipe) => (
           <div className="col-md-3">
             <RecipeCard
-              key={index + Math.random()}
+              key={recipe.id}
               image={recipe.image}
-              label={recipe.label}
-              url={recipe.url}
+              title={recipe.title}
+              sourceUrl={recipe.sourceUrl}
             />
           </div>
         ))}

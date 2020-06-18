@@ -8,26 +8,28 @@ function App() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    const APP_ID = process.env.REACT_APP_APP_ID;
-    const APP_KEY = process.env.REACT_APP_APP_KEY;
+    const API_KEY = process.env.REACT_APP_API_KEY;
 
     const getRecipes = async () => {
-      let results = [];
+      // Get recipe IDs by name
+      const getRecipeIdsResponse = await fetch(
+        `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${search}&number=10`
+      );
+      const data = await getRecipeIdsResponse.json();
+      const ids = data.results.map((result) => result.id);
 
-      if (search !== "") {
-        const response = await fetch(
-          `https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`
-        );
-        const data = await response.json();
-        results = data.hits.map((hit) => hit.recipe);
-
-        console.log(results);
-      }
+      // Get recipes by IDs
+      const getRecipesResponse = await fetch(
+        `https://api.spoonacular.com/recipes/informationBulk?apiKey=${API_KEY}&ids=${ids.toString()}`
+      );
+      const results = await getRecipesResponse.json();
 
       setRecipes(results);
     };
 
-    getRecipes();
+    if (search !== "") {
+      getRecipes();
+    }
   }, [search]);
 
   const updateSearch = (e) => {
