@@ -1,8 +1,6 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 const RecipeContainer = (props) => {
   return (
@@ -10,13 +8,7 @@ const RecipeContainer = (props) => {
       <Row>
         {props.recipes.map((recipe) => (
           <Col className="d-flex" md="4">
-            <RecipeCard
-              key={recipe.id}
-              image={recipe.image}
-              title={recipe.title}
-              sourceName={recipe.sourceName}
-              sourceUrl={recipe.sourceUrl}
-            />
+            <RecipeCard key={recipe.id} recipe={recipe} />
           </Col>
         ))}
       </Row>

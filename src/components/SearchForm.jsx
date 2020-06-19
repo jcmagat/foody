@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import InputGroup from "react-bootstrap/InputGroup";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+import {
+  InputGroup,
+  Dropdown,
+  DropdownButton,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 
 const SearchForm = (props) => {
   const [dropdownTitle, setDropdownTitle] = useState("Recipe Name");
