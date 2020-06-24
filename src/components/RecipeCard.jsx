@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import RecipeModal from "./RecipeModal";
+import React from "react";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const RecipeCard = (props) => {
-  const [show, setShow] = useState(false);
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
-
   return (
-    <>
+    <Link
+      to={{
+        pathname: `/recipe/${props.recipe.id}`,
+        state: { recipe: props.recipe },
+      }}
+    >
       <Card>
         <Card.Img
           variant="top"
@@ -19,16 +19,9 @@ const RecipeCard = (props) => {
         <Card.Body>
           <Card.Title>{props.recipe.title}</Card.Title>
           <Card.Text>{`by ${props.recipe.sourceName}`}</Card.Text>
-          <Button onClick={handleShow}>Recipe</Button>
         </Card.Body>
       </Card>
-
-      <RecipeModal
-        show={show}
-        handleClose={handleClose}
-        recipe={props.recipe}
-      />
-    </>
+    </Link>
   );
 };
 
