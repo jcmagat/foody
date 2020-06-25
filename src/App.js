@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import RecipeContainer from "./components/RecipeContainer";
 import SearchForm from "./components/SearchForm";
+import { Container, Row, Col } from "react-bootstrap";
+import RecipeCard from "./components/RecipeCard";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -12,18 +13,13 @@ function App() {
 
     const getRecipes = async () => {
       // Get recipe IDs by name
-      const getRecipeIdsResponse = await fetch(
-        `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${search}&number=12`
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${search}&instructionsRequired=true&number=12`
       );
-      const data = await getRecipeIdsResponse.json();
-      const ids = data.results.map((result) => result.id);
+      const data = await response.json();
+      const results = data.results;
 
-      // Get recipes by IDs
-      const getRecipesResponse = await fetch(
-        `https://api.spoonacular.com/recipes/informationBulk?apiKey=${API_KEY}&ids=${ids.toString()}`
-      );
-      const results = await getRecipesResponse.json();
-
+      console.log(results);
       setRecipes(results);
     };
 
@@ -40,7 +36,16 @@ function App() {
   return (
     <div className="App">
       <SearchForm updateSearch={updateSearch} />
-      <RecipeContainer recipes={recipes} />
+
+      <Container>
+        <Row>
+          {recipes.map((recipe) => (
+            <Col className="d-flex" md="4">
+              <RecipeCard key={recipe.id} recipe={recipe} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Image } from "react-bootstrap";
 
 class RecipePage extends Component {
   state = {
@@ -13,8 +14,11 @@ class RecipePage extends Component {
   render() {
     return (
       <div>
+        <Image src={this.state.recipe.image} fluid />
         <h1>{this.state.recipe.title}</h1>
-        <p>Info</p>
+        <p>by {this.state.recipe.sourceName}</p>
+        <p>{this.state.recipe.readyInMinutes} minutes</p>
+        <p>{this.state.recipe.servings} servings</p>
       </div>
     );
   }

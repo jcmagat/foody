@@ -3,6 +3,8 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const RecipeCard = (props) => {
+  const image = `https://spoonacular.com/recipeImages/${props.recipe.image}`;
+
   return (
     <Link
       to={{
@@ -11,11 +13,7 @@ const RecipeCard = (props) => {
       }}
     >
       <Card>
-        <Card.Img
-          variant="top"
-          src={props.recipe.image}
-          alt={props.recipe.title}
-        />
+        <Card.Img variant="top" src={image} alt={props.recipe.title} />
         <Card.Body>
           <Card.Title>{props.recipe.title}</Card.Title>
           <Card.Text>{`by ${props.recipe.sourceName}`}</Card.Text>
