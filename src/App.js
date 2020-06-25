@@ -12,14 +12,12 @@ function App() {
     const API_KEY = process.env.REACT_APP_API_KEY;
 
     const getRecipes = async () => {
-      // Get recipe IDs by name
       const response = await fetch(
         `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&query=${search}&instructionsRequired=true&number=12`
       );
       const data = await response.json();
       const results = data.results;
 
-      console.log(results);
       setRecipes(results);
     };
 

@@ -7,8 +7,21 @@ class RecipePage extends Component {
   };
 
   componentDidMount = async () => {
-    const recipe = this.props.location.state.recipe;
-    this.setState({ recipe });
+    const API_KEY = process.env.REACT_APP_API_KEY;
+
+    const getRecipe = async () => {
+      const id = this.props.location.state.id;
+
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&includeNutrition=false`
+      );
+      const result = await response.json();
+
+      console.log(result);
+      this.setState({ recipe: result });
+    };
+
+    getRecipe();
   };
 
   render() {

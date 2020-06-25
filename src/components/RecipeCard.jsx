@@ -9,7 +9,7 @@ const RecipeCard = (props) => {
     <Link
       to={{
         pathname: `/recipe/${props.recipe.id}`,
-        state: { recipe: props.recipe },
+        state: { id: props.recipe.id },
       }}
     >
       <Card>
