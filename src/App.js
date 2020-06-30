@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import SearchForm from "./components/SearchForm";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 import RecipeCard from "./components/RecipeCard";
 
 function App() {
@@ -33,6 +33,12 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar className="Nav">
+        <Navbar.Brand href="/">
+          <h3 className="Logo">Foody</h3>
+        </Navbar.Brand>
+      </Navbar>
+
       <SearchForm updateSearch={updateSearch} />
 
       <Container>
